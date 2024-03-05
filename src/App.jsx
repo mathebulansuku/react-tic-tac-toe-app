@@ -1,10 +1,11 @@
+import Header from "../src/components/Header";
 
 function App() {
-  
-
   return (
-    <h1>React Tic-Tac-Toe</h1>
-  )
+    <div>
+      <Header title="Tic-Tac-Toe" />
+    </div>
+  );
 }
 
-export default App
+export default App;
