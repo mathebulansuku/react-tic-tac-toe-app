@@ -23,7 +23,10 @@ function deriveActivePlayer(gameTurn) {
 }
 
 function App() {
-  // const [activePlayer, setActivePlayer] = useState("X");
+  const [players, setPlayers] = useState({
+    X: "Player 1",
+    O: "Player 2",
+  });
   const [gameTurn, setGameTurn] = useState([]);
 
   const activePlayer = deriveActivePlayer(gameTurn);
@@ -52,7 +55,7 @@ function App() {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thirdSquareSymbol
     ) {
-      winner = firstSquareSymbol;
+      winner = players[firstSquareSymbol];
     }
   }
 
@@ -74,6 +77,15 @@ function App() {
     setGameTurn([]);
   }
 
+  function handlePlayerName(symbol, newName) {
+    setPlayers((prevPlayers) => {
+      return {
+        ...prevPlayers,
+        [symbol]: newName,
+      };
+    });
+  }
+
   return (
     <menu>
       <Header title="Tic-Tac-Toe" />
@@ -83,6 +95,7 @@ function App() {
             initialName="Player 1"
             symbol="X"
             isActive={activePlayer === "X"}
+            onChangeName={handlePlayerName}
           />
           <Player
             initialName="Player 2"
